@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "default": "antojitos-dona-lucha",
+    "firebase deploy --only hosting": "antojitos-dona-lucha"
+  },
+  "targets": {},
+  "etags": {}
+}
