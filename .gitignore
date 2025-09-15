@@ -67,3 +67,6 @@ node_modules/
 
 # dataconnect generated files
 .dataconnect
+
+firebase-debug.log 
+d79dd3411b62754f24048c1be935174afdc6f42e
