@@ -3,39 +3,167 @@
 <head>
   <meta charset="UTF-8">
   <title>Antojitos Doña Lucha</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Estilos visuales del sitio -->
   <style>
     body {
-      background-color: #fff8dc;
+      margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      text-align: center;
-      padding: 50px;
-    }
-    h1 {
-      color: #b22222;
-      font-size: 3em;
-    }
-    p {
-      font-size: 1.2em;
+      background-color: #fff8dc; /* Color tipo papel de estraza */
       color: #333;
     }
-    button {
-      margin-top: 30px;
-      padding: 10px 20px;
-      font-size: 1em;
+
+    header {
+      background-color: #b22222; /* Rojo cálido */
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    img.banner {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+    }
+
+    section {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .menu-item {
+      background-color: #f8f8f8;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    footer {
       background-color: #b22222;
       color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
     }
-    button:hover {
-      background-color: #8b0000;
+
+    /* Estilos para los módulos de IA */
+    #chatbot, #recomendador {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #f0e68c; /* Amarillo suave */
+      border-radius: 10px;
+    }
+
+    input, select, button {
+      margin: 10px;
+      padding: 10px;
+      font-size: 1em;
     }
   </style>
 </head>
 <body>
-  <h1>¡Bienvenido a Antojitos Doña Lucha!</h1>
-  <p>Tu sitio está en línea y funcionando correctamente 🎉</p>
-  <button onclick="alert('¡Gracias por visitarnos!')">Haz clic aquí</button>
+
+  <!-- Encabezado principal -->
+  <header>
+    <h1>Antojitos Doña Lucha</h1>
+    <p>¡Sabor casero que conquista corazones!</p>
+  </header>
+
+  <!-- Imagen de portada -->
+  <img src="https://via.placeholder.com/1200x300?text=Antojitos+Doña+Lucha" alt="Banner del negocio" class="banner">
+
+  <!-- Sección del menú -->
+  <section>
+    <h2>Menú del día</h2>
+    <div class="menu">
+      <div class="menu-item">
+        <h3>Quesadillas</h3>
+        <p>Flor de calabaza, huitlacoche, chicharrón prensado</p>
+      </div>
+      <div class="menu-item">
+        <h3>Gorditas</h3>
+        <p>Frijoles, chorizo, papa con queso</p>
+      </div>
+      <div class="menu-item">
+        <h3>Tacos dorados</h3>
+        <p>Pollo, papa, carne deshebrada</p>
+      </div>
+    </div>
+
+    <!-- Botón para leer el menú en voz alta -->
+    <button onclick="leerMenu()">🔊 Escuchar menú</button>
+  </section>
+
+  <!-- Recomendador de platillos según preferencia -->
+  <section id="recomendador">
+    <h2>¿Qué se te antoja hoy?</h2>
+    <select id="preferencia">
+      <option value="vegetariano">Vegetariano</option>
+      <option value="picante">Picante</option>
+      <option value="carne">Con carne</option>
+    </select>
+    <button onclick="recomendarPlatillo()">Recomendar</button>
+    <p id="recomendacion"></p>
+  </section>
+
+  <!-- Chatbot básico para atención al cliente -->
+  <section id="chatbot">
+    <h2>Chat de atención al cliente</h2>
+    <input type="text" id="pregunta" placeholder="Escribe tu pregunta...">
+    <button onclick="responder()">Enviar</button>
+    <p id="respuesta"></p>
+  </section>
+
+  <!-- Información de contacto -->
+  <section>
+    <h2>Contacto</h2>
+    <p>📍 Gustavo A. Madero, CDMX</p>
+    <p>📞 55 1234 5678</p>
+    <p>📧 contacto@donalucha.mx</p>
+  </section>
+
+  <!-- Pie de página -->
+  <footer>
+    <p>&copy; 2025 Antojitos Doña Lucha. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- Funciones de inteligencia artificial simuladas -->
+  <script>
+    // Función para leer el menú en voz alta
+    function leerMenu() {
+      const texto = "Menú del día: Quesadillas de flor de calabaza, gorditas de chorizo, tacos dorados de pollo.";
+      const voz = new SpeechSynthesisUtterance(texto);
+      speechSynthesis.speak(voz);
+    }
+
+    // Función para recomendar platillo según preferencia
+    function recomendarPlatillo() {
+      const pref = document.getElementById("preferencia").value;
+      let mensaje = "";
+      if (pref === "vegetariano") mensaje = "Te recomendamos una quesadilla de flor de calabaza 🌼";
+      else if (pref === "picante") mensaje = "Una gordita de chicharrón con salsa verde 🔥";
+      else mensaje = "Unos tacos dorados de carne deshebrada 🥩";
+      document.getElementById("recomendacion").innerText = mensaje;
+    }
+
+    // Chatbot básico que responde a preguntas comunes
+    function responder() {
+      const pregunta = document.getElementById("pregunta").value.toLowerCase();
+      let respuesta = "No entendí tu pregunta, ¿puedes reformularla?";
+      if (pregunta.includes("horario")) respuesta = "Abrimos de 9am a 6pm, de lunes a sábado.";
+      else if (pregunta.includes("ubicación")) respuesta = "Estamos en Gustavo A. Madero, CDMX.";
+      else if (pregunta.includes("pedido")) respuesta = "Puedes hacer tu pedido al 55 1234 5678.";
+      document.getElementById("respuesta").innerText = respuesta;
+    }
+  </script>
+
 </body>
 </html>
